@@ -3,7 +3,13 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.lists(), "add", this.addList); // should i be listening for list collection?
+    this.listenTo(this.model.lists(), "add", this.addList);
+    // CHECK: see if this.model.lists below needs to be invoked or not
+    var newFormView = new TrelloClone.Views.ListsNew({
+      collection: this.model.lists(),
+      model: this.model 
+      });
+    this.addSubview('.new_form', newFormView);
   },
 
   addList: function(list) {
