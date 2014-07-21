@@ -9,6 +9,9 @@ Backbone.CompositeView = Backbone.View.extend({
     this.$(selector).append(subview.$el);
     // Bind events in case `subview` has previously been removed from
     // DOM.
+    if (subview.attachSubviews) {
+      subview.attachSubviews();
+    }
     subview.delegateEvents();
   },
 

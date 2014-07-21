@@ -21,7 +21,7 @@ TrelloClone.Views.ListsNew = Backbone.View.extend({
     newList.save( {}, {
       success: function() {
         that.collection.add(newList);
-        this.$('#list_title').val("");
+        that.$('#list_title').val("");
       }
     });
   }
