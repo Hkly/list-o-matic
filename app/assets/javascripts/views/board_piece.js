@@ -1,6 +1,6 @@
 TrelloClone.Views.BoardPiece = Backbone.View.extend({
   template: JST['boards/piece'],
-  tagName: "li",
+  className: 'board-card',
 
   render: function() {
     var renderedContent = this.template({
@@ -8,5 +8,15 @@ TrelloClone.Views.BoardPiece = Backbone.View.extend({
     });
     this.$el.html(renderedContent);
     return this;
+  },
+
+  events: {
+    "click": "goToCard"
+  },
+
+  goToCard: function(event){
+    var url = '#/boards/' + this.model.id
+    Backbone.history.navigate(url, {trigger: true})
   }
+
 });
