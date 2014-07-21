@@ -19,3 +19,25 @@
 #outer_main {
   padding-top: 60px;
 }
+
+.lists {
+  overflow-x: visible;
+}
+
+.list-card {
+
+  background-color: #7f8587;
+  color: #e1e1e1;
+  border-radius: 10px;
+  // display: inline-block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 250px;
+  min-height: 175px;
+  h3 {
+    font-size: 1.5em;
+  }
+}

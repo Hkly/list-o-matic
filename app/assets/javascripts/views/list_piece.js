@@ -1,6 +1,6 @@
 TrelloClone.Views.ListPiece = Backbone.View.extend({
   template: JST['lists/piece'],
-  tagName: 'li',
+  className: "list-card",
 
   render: function(){
     var renderedContent = this.template({ list: this.model });
