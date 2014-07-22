@@ -4,6 +4,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.lists(), "add", this.addList);
+    this.listenTo(this.model.lists(), "remove", this.removeList);
     var newFormView = new TrelloClone.Views.ListsNew({
       collection: this.model.lists(),
       model: this.model
@@ -22,9 +23,18 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
   addList: function(list) {
     var listPiece = new TrelloClone.Views.ListPiece({
-      model: list
+      model: list,
+      collection: this.model.lists()
       });
     this.addSubview('.lists', listPiece);
+  },
+
+  removeList: function(list) {
+    var views = this.subviews('.lists');
+    var view = _.find(views, function(view) {
+      return view.model.id == list.id;
+    });
+    this.removeSubview('.lists', view);
   },
 
   render: function() {
