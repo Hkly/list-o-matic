@@ -40,6 +40,7 @@ TrelloClone.Views.CardsForm = Backbone.View.extend({
           that.list.cards().add(card);
 
           that.$('#card-title').val("");
+          that.model =new TrelloClone.Models.Card();
         }
       });
     }
