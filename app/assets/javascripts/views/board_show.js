@@ -46,7 +46,31 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
     this.attachSubviews();
 
+    var that = this;
+
+    $(".cards").sortable({
+      connectWith: ".cards",
+      stop: function() {
+        var cardsData = $(this).sortable("toArray");
+      }
+    });
+
+    $(".lists").sortable({ stop: function() {
+      var listsData = $(this).sortable("toArray");
+      that.assignOrd(that.model.lists(), listsData);
+    }
+    });
+
     return this;
+  },
+
+  assignOrd: function(obj, data) {
+    obj.each(function(model) {
+      var newOrd = data.indexOf(model.id.toString());
+      model.set({'ord': newOrd});
+      model.save();
+      console.log(model.get('ord') + 'jhfdskjfhdsajkfhdsjfalkdsjflkjdsfljdsef')
+    });
   },
 
   deleteBoard: function(event) {

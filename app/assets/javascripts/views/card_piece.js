@@ -1,6 +1,9 @@
 TrelloClone.Views.CardPiece = Backbone.View.extend({
   template: JST["cards/piece"],
   className: "card-piece",
+  id: function(){
+    return this.model.id;
+  },
 
   events: {
     "mouseenter": "showDelete",

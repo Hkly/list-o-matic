@@ -1,6 +1,9 @@
 TrelloClone.Views.ListPiece = Backbone.CompositeView.extend({
   template: JST['lists/piece'],
   className: "list-card container",
+  id: function(){
+    return this.model.id;
+  },
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
@@ -28,6 +31,7 @@ TrelloClone.Views.ListPiece = Backbone.CompositeView.extend({
     this.$el.html(renderedContent);
 
     this.attachSubviews();
+
 
     return this;
   },
